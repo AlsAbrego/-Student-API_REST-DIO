@@ -1,4 +1,4 @@
-package repositories;
+package com.studentbooks.student.repositories;
 
 import com.studentbooks.student.entities.Student;
 
