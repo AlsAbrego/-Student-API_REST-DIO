@@ -1,6 +1,8 @@
 package com.studentbooks.student.controllers;
 
 
+import java.util.List;
+
 import com.studentbooks.student.entities.Student;
 import com.studentbooks.student.services.StudentService;
 
@@ -17,15 +19,11 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/student")
+@RequestMapping("/api/v1/student")
 public class StudentController {
     
     private final StudentService studentService;
-    
-    // @Autowired
-    // public StudentController(StudentService studentService) {
-    //     this.studentService = studentService;
-    // }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -33,4 +31,9 @@ public class StudentController {
         return studentService.create(student);
     }
     
+    @GetMapping
+    public List<Student> getAllStudents() {
+        return studentService.findAll();        
+    }
+
 }
