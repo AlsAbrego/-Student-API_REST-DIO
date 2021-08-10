@@ -3,6 +3,7 @@ package com.studentbooks.student.services;
 import java.util.List;
 
 import com.studentbooks.student.entities.Student;
+import com.studentbooks.student.exception.StudentNotFoundException;
 import com.studentbooks.student.repositories.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class StudentService {
 
     public List<Student> findAll() {
         return studentRepository.findAll();
+    }
+
+    public Student findById(Long id) throws StudentNotFoundException{
+        Student studentFind = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+        return studentFind;
     }
     
 }

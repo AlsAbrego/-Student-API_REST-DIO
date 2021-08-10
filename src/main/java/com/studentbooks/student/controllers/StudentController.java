@@ -4,11 +4,13 @@ package com.studentbooks.student.controllers;
 import java.util.List;
 
 import com.studentbooks.student.entities.Student;
+import com.studentbooks.student.exception.StudentNotFoundException;
 import com.studentbooks.student.services.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,11 @@ public class StudentController {
     @GetMapping
     public List<Student> getAllStudents() {
         return studentService.findAll();        
+    }
+
+    @GetMapping("/{id}")
+    public Student findById(@PathVariable Long id) throws StudentNotFoundException {
+        return studentService.findById(id);
     }
 
 }
