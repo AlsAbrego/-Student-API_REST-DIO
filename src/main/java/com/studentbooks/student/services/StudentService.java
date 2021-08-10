@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import net.bytebuddy.asm.Advice.Return;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -29,6 +30,12 @@ public class StudentService {
     public Student findById(Long id) throws StudentNotFoundException{
         Student studentFind = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
         return studentFind;
+    }
+
+    public String delete(Long id) throws StudentNotFoundException {
+        studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+        studentRepository.deleteById(id); 
+        return "Student with ID: " + id +  " was deleted with success";              
     }
     
 }

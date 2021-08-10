@@ -9,6 +9,7 @@ import com.studentbooks.student.services.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,11 @@ public class StudentController {
     @GetMapping("/{id}")
     public Student findById(@PathVariable Long id) throws StudentNotFoundException {
         return studentService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id) throws StudentNotFoundException {
+        return studentService.delete(id);
     }
 
 }
