@@ -16,7 +16,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	// implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.5.2'
 	implementation 'org.springframework.boot:spring-boot-devtools:2.5.2'
 	
 	testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.1'
@@ -37,10 +36,16 @@ dependencies {
 
 	//databases
     runtimeOnly 'com.h2database:h2'
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.23'
+    // implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.23'
 
 	
+	//swagger
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-bean-validators', version: '2.9.2'
 
+
+	//Hirbenate
 	implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.5.5.Final'
 	implementation group: 'org.hibernate', name: 'hibernate-envers', version: '5.5.5.Final'
     implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '7.0.1.Final'
