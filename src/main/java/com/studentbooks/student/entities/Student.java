@@ -27,10 +27,8 @@ public class Student {
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    //private String curso;
-
     @Column
-    private LocalDate birthDate;
+    private LocalDate birthday;
 
     @Builder.Default
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})

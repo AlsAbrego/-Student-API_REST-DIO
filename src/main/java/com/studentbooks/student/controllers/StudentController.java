@@ -3,6 +3,10 @@ package com.studentbooks.student.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import com.studentbooks.student.dto.request.StudentDTO;
+import com.studentbooks.student.dto.response.MessageResponseDTO;
 import com.studentbooks.student.entities.Student;
 import com.studentbooks.student.exception.StudentNotFoundException;
 import com.studentbooks.student.services.StudentService;
@@ -28,31 +32,35 @@ public class StudentController {
     
     private final StudentService studentService;
 
-
+ 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String createStudent(@RequestBody Student student) {
-        return studentService.create(student);
+    public MessageResponseDTO createStudent(@RequestBody @Valid StudentDTO studentDTO) {
+        return studentService.create(studentDTO);
     }
-    
+
+
     @GetMapping
-    public List<Student> getAllStudents() {
+    public List<StudentDTO> getAllStudents() {
         return studentService.findAll();        
     }
 
+    
     @GetMapping("/{id}")
-    public Student findById(@PathVariable Long id) throws StudentNotFoundException {
+    public StudentDTO findById(@PathVariable Long id) throws StudentNotFoundException {
         return studentService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Long id, @RequestBody Student student) throws StudentNotFoundException {
-        return studentService.update(id, student);        
+    public MessageResponseDTO update(@PathVariable Long id, @RequestBody @Valid StudentDTO studentDTO) throws StudentNotFoundException {
+        return studentService.update(id, studentDTO);        
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String delete(@PathVariable Long id) throws StudentNotFoundException {
         return studentService.delete(id);
     }
+    
 
 }
